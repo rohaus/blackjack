@@ -7,7 +7,11 @@ class window.AppView extends Backbone.View
   '
 
   events:
-    "click .hit-button": -> @model.get('playerHand').hit()
+    "click .hit-button": ->
+      if @model.get('playerHand').scores()[0] < 21
+        @model.get('playerHand').hit()
+      else
+        console.log('You cant do that');
     "click .stand-button": -> @model.get('playerHand').stand()
 
   initialize: -> @render()
