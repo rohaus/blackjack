@@ -2,7 +2,6 @@
 class window.App extends Backbone.Model
 
   initialize: ->
-    console.log("Shuffling cards, there is a new deck")
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
@@ -33,20 +32,14 @@ class window.App extends Backbone.Model
       if dealerScore < @get('dealerHand').scores()[1] < 21
         dealerScore = @get('dealerHand').scores()[1]
 
-    console.log('player',playerScore,'dealer',dealerScore);
-
     if dealerScore > 21
       @set 'endGameMsg', 'You WIN!'
-      console.log("the player wins with a score of #{playerScore}")
     else if playerScore > dealerScore
       @set 'endGameMsg', 'You WIN!'
-      console.log("the player wins with a #{playerScore}")
     else if playerScore < dealerScore
       @set 'endGameMsg', 'You LOSE!'
-      console.log("the dealer wins with a #{dealerScore}")
     else
       @set 'endGameMsg', 'You LOSE!'
-      console.log("the house wins because it was a draw")
 
     @trigger 'gameOver', @
 

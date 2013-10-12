@@ -2,6 +2,11 @@
 
 body {
   font-family: 'Amarante', cursive;
+  background-color: #A8A8A8;
+}
+
+div {
+  text-align:center;
 }
 
 h1 {
@@ -26,20 +31,29 @@ button {
   background-color: black;
 }
 
+.reset-button {
+  background-color: #99173C;
+}
+
 .card {
-  float: left;
+  display: inline-block;
   border: solid 2px black;
-  width: 120px;
   border-radius: 5px;
+  width: 120px;
   height: 167px;
-  margin-right: 20px;
-  text-align: center;
+  margin: 0 20px;
 }
 
 .hand {
   overflow: auto;
 }
 
-.displayOff{
+.displayOff {
   display: none;
+}
+
+div.hand {
+  width: 100%;
+  margin: auto;
+  text-align:center;
 }

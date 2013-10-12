@@ -14,7 +14,6 @@ class window.AppView extends Backbone.View
       @model.endGame() if @model.get('playerHand').scores()[0] > 21
 
     "click .stand-button": ->
-      console.log('clicked')
       @model.get('playerHand').stand()
 
     "click .reset-button": ->
@@ -23,7 +22,6 @@ class window.AppView extends Backbone.View
 
   initialize: ->
     @model.on 'gameOver', =>
-      console.log('game over event heard')
       $('button').toggleClass('displayOff')
       @$el.prepend '<h1>' + @model.get("endGameMsg") + '</h1>'
     @render()
