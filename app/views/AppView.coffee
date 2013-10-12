@@ -23,7 +23,7 @@ class window.AppView extends Backbone.View
   initialize: ->
     @model.on 'gameOver', =>
       $('button').toggleClass('displayOff')
-      @$el.prepend '<h1>' + @model.get("endGameMsg") + '</h1>'
+      @$el.prepend '<h1 class="animated tada">' + @model.get("endGameMsg") + '</h1>'
     @render()
 
   render: ->

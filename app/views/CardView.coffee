@@ -1,6 +1,6 @@
 class window.CardView extends Backbone.View
 
-  className: 'card'
+  className: 'card animated flyInY'
 
   initialize: ->
     @model.on 'change', => @render
