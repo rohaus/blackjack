@@ -43,3 +43,7 @@ button {
 .hand {
   overflow: auto;
 }
+
+.displayOff{
+  display: none;
+}

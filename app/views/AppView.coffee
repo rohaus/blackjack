@@ -3,6 +3,7 @@ class window.AppView extends Backbone.View
   template: _.template "
     <button class='hit-button'>Hit</button>
     <button class='stand-button'>Stand</button>
+    <button class='reset-button displayOff'>Reset</button>
     <div class='player-hand-container'></div>
     <div class='dealer-hand-container'></div>
   "
@@ -12,11 +13,18 @@ class window.AppView extends Backbone.View
       @model.get('playerHand').hit()
       @model.endGame() if @model.get('playerHand').scores()[0] > 21
 
-    "click .stand-button": -> @model.get('playerHand').stand()
+    "click .stand-button": ->
+      console.log('clicked')
+      @model.get('playerHand').stand()
+
+    "click .reset-button": ->
+      @model.restart()
+      @render()
 
   initialize: ->
     @model.on 'gameOver', =>
       console.log('game over event heard')
+      $('button').toggleClass('displayOff')
       @$el.prepend '<h1>' + @model.get("endGameMsg") + '</h1>'
     @render()
 

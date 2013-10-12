@@ -2,6 +2,7 @@
 class window.App extends Backbone.Model
 
   initialize: ->
+    console.log("Shuffling cards, there is a new deck")
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
@@ -16,7 +17,8 @@ class window.App extends Backbone.Model
       playerScore = @get('playerHand').scores()[1]
 
     if playerScore > 21
-      return @set 'endGameMsg', 'You LOSE!'
+      @set 'endGameMsg', 'You LOSE!'
+      return @trigger 'gameOver', @
 
     dealerHand = @get('dealerHand')
     dealerHand.first().flip()
@@ -46,7 +48,12 @@ class window.App extends Backbone.Model
       @set 'endGameMsg', 'You LOSE!'
       console.log("the house wins because it was a draw")
 
-    # uncomment below when AppView's render can render a Game Over screen
     @trigger 'gameOver', @
 
-  # restart: ->
+  restart: ->
+    @initialize() if @get('deck').length < 16
+    @set 'playerHand', @get('deck').dealPlayer()
+    @set 'dealerHand', @get('deck').dealDealer()
+    @set 'endGameMsg', null
+    @get('playerHand').on 'stand', =>
+      @endGame()
