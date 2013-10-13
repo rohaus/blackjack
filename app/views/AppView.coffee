@@ -18,7 +18,8 @@ class window.AppView extends Backbone.View
 
     "click .reset-button": ->
       @model.restart()
-      @render()
+      $('.tada').addClass('hinge')
+      setTimeout( (=> @render()), 1000)
 
   initialize: ->
     @model.on 'gameOver', =>
